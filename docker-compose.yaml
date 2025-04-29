@@ -1,0 +1,23 @@
+volumes:
+  pg_cardvault:
+
+services:
+  cardvault-db-host:
+    image: postgres
+    restart: always
+    env_file:
+      - ./postgres/cardvault-db.env
+    volumes:
+      - pg_cardvault:/var/lib/postgresql/data
+    ports:
+      - "5000:5432"
+
+  cardvault-app:
+    restart: always
+    build: .
+    depends_on:
+      - cardvault-db-host
+    ports:
+      - "8080:8080"
+    env_file:
+      - ./src/main/resources/cardvault-app.env
