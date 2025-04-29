@@ -1,2 +1,2 @@
 # CardVault
-Test task for EffectiveMobile Java internship
+Test task for Java internship in EffectiveMobile
