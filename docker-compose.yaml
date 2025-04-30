@@ -2,21 +2,28 @@ volumes:
   pg_cardvault:
 
 services:
-  cardvault-db-host:
+  cardvault_db-host:
     image: postgres
     restart: always
     env_file:
-      - ./postgres/cardvault-db.env
+      - ./postgres/cardvault_db.env
     volumes:
       - pg_cardvault:/var/lib/postgresql/data
+#      - ./postgres/init_container.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - "5000:5432"
+    healthcheck:
+      test: /usr/bin/pg_isready
+      interval: 5s
+      timeout: 10s
+      retries: 120
 
   cardvault-app:
     restart: always
     build: .
     depends_on:
-      - cardvault-db-host
+      cardvault_db-host:
+          condition: service_healthy
     ports:
       - "8080:8080"
     env_file:

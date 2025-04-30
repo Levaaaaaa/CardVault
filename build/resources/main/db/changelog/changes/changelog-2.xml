@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
+    <changeSet id="2" author="Leu">
+        <sql>
+            CREATE TABLE users (
+            id SERIAL PRIMARY KEY,
+            first_name varchar(100) NOT NULL,
+            last_name varchar(100) NOT NULL,
+            email varchar(100) not null unique,
+            password BYTEA not null,
+            role VARCHAR(10) NOT NULL,
+            created_at TIMESTAMP DEFAULT now(),
+            updated_at TIMESTAMP DEFAULT now(),
+            enabled BOOLEAN NOT NULL
+            );
+            CREATE INDEX users_email_idx on users (email);
+        </sql>
+    </changeSet>
+</databaseChangeLog>
