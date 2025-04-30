@@ -13,6 +13,9 @@ import java.time.LocalDateTime;
 @Table(name = "users")
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserEntity {
 
     @Id
