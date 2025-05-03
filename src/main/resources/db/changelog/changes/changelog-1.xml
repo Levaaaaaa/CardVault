@@ -5,9 +5,53 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
     <changeSet id="1" author="Leu">
-        <sql>
-            CREATE TYPE user_role AS ENUM('USER', 'ADMIN');
-            CREATE TYPE card_status AS ENUM('ACTIVE', 'BLOCKED', 'EXPIRED');
-        </sql>
+        <createTable tableName="users">
+            <column name="id" type="UUID">
+                <constraints unique="true" primaryKey="true"/>
+            </column>
+            <column name="first_name" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="varchar(100)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="password" type="VARCHAR(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role" type="varchar(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="enabled" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createIndex tableName="users" indexName="users_email_idx">
+            <column name="email">
+                <constraints unique="true"/>
+            </column>
+        </createIndex>
+<!--        <sql>-->
+<!--            CREATE TABLE users (-->
+<!--            id SERIAL PRIMARY KEY,-->
+<!--            first_name varchar(100) NOT NULL,-->
+<!--            last_name varchar(100) NOT NULL,-->
+<!--            email varchar(100) not null unique,-->
+<!--            password VARCHAR(64) not null,-->
+<!--            role VARCHAR(10) NOT NULL,-->
+<!--            created_at TIMESTAMP DEFAULT now(),-->
+<!--            updated_at TIMESTAMP DEFAULT now(),-->
+<!--            enabled BOOLEAN NOT NULL-->
+<!--            );-->
+<!--            CREATE INDEX users_email_idx on users (email);-->
+<!--        </sql>-->
     </changeSet>
 </databaseChangeLog>

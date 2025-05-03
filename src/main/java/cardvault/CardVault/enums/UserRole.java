@@ -1,8 +1,8 @@
 package cardvault.CardVault.enums;
 
 public enum UserRole {
-    USER ("USER"),
-    ADMIN ("ADMIN");
+    ROLE_USER("ROLE_USER"),
+    ROLE_ADMIN("ROLE_ADMIN");
 
     private final String role;
 

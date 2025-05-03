@@ -43,10 +43,10 @@ public class SecurityConfiguration {
                 .build();
     }
 
-//    @Bean
-//    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
-//        return config.getAuthenticationManager();
-//    }
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
+        return config.getAuthenticationManager();
+    }
 
 //    @Bean
 //    public JwtAuthenticationFilter jwtAuthenticationFilter(AuthenticationManager manager, JwtService jwtService) {

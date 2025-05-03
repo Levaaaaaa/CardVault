@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.UUID;
 
 @Entity
 @Table(name = "transactions")
@@ -30,9 +31,8 @@ public class TransactionEntity {
 //    REFERENCES cards(id),
 //);
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    Integer id;
+    @Column(name = "id", nullable = false, columnDefinition = "uuid")
+    UUID id;
 
     @ManyToOne
     @JoinColumn(name = "producer", referencedColumnName = "id", nullable = false)

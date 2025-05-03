@@ -7,9 +7,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 public class UserDetailsImpl implements UserDetails {
-    private Integer id;
+    private UUID id;
     private String email;
     private String password;
     private Collection<? extends GrantedAuthority> authorities;
@@ -18,9 +19,9 @@ public class UserDetailsImpl implements UserDetails {
     public UserDetailsImpl(UserEntity userEntity) {
         this.id = userEntity.getId();
         this.email = userEntity.getEmail();
-        this.password = new String(userEntity.getPassword());
+        this.password = userEntity.getPassword();
         this.enabled = userEntity.isEnabled();
-        this.authorities = List.of(new SimpleGrantedAuthority("ROLE_" + userEntity.getUserRole().name()));
+        this.authorities = List.of(new SimpleGrantedAuthority(userEntity.getUserRole().name()));
     }
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

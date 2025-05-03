@@ -4,20 +4,35 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
-    <changeSet id="2" author="Leu">
-        <sql>
-            CREATE TABLE users (
-            id SERIAL PRIMARY KEY,
-            first_name varchar(100) NOT NULL,
-            last_name varchar(100) NOT NULL,
-            email varchar(100) not null unique,
-            password BYTEA not null,
-            role VARCHAR(10) NOT NULL,
-            created_at TIMESTAMP DEFAULT now(),
-            updated_at TIMESTAMP DEFAULT now(),
-            enabled BOOLEAN NOT NULL
-            );
-            CREATE INDEX users_email_idx on users (email);
-        </sql>
+    <changeSet id="create-cards-table" author="Leu">
+        <createTable tableName="cards">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="card_number" type="BYTEA">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="card_number_hash" type="BYTEA">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="card_owner" type="UUID">
+                <constraints nullable="false" foreignKeyName="fk_card_owner" references="users(id)" deleteCascade="true"/>
+            </column>
+            <column name="validity_period" type="DATE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="VARCHAR(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="balance" type="DECIMAL(19,2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="now()"/>
+        </createTable>
+
+        <createIndex indexName="card_number_hash_idx" tableName="cards" unique="true">
+            <column name="card_number_hash"/>
+        </createIndex>
     </changeSet>
+
 </databaseChangeLog>

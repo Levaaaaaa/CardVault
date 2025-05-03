@@ -1,21 +1,22 @@
 package cardvault.CardVault.dto.crud;
 
 import cardvault.CardVault.enums.CardStatus;
-import cardvault.CardVault.persistence.entities.UserEntity;
-import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.sql.Date;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class CardDTO {
-    String cardNumber;
+public class CardResponse {
+    UUID cardUuid;
+    String maskedCardNumber;
     UserDTO cardOwner;
     Date validityPeriod;
 

@@ -4,12 +4,12 @@ INSERT INTO users (first_name, last_name, email, password, role, created_at, upd
 ('Bob', 'Johnson', 'bob@example.com', 'hashed_pw_2', 'USER', now(), now(), true),
 ('Charlie', 'Admin', 'admin@example.com', 'hashed_pw_admin', 'ADMIN', now(), now(), true);
 
--- Вставка карт (зашифрованный номер симулируется через HEX)
-INSERT INTO cards (card_number, card_owner, validity_period, status) VALUES
-(decode('a1b2c3d4e5f6', 'hex'), 1, '2026-12-31', 'ACTIVE'),
-(decode('b2c3d4e5f6a1', 'hex'), 1, '2025-10-31', 'ACTIVE'),
-(decode('c3d4e5f6a1b2', 'hex'), 2, '2024-07-31', 'BLOCKED'),
-(decode('d4e5f6a1b2c3', 'hex'), 3, '2027-01-31', 'EXPIRED');
+-- Вставка карт (зашифрованный номер и его хэш симулируются через HEX)
+INSERT INTO cards (card_number, card_number_hash, card_owner, validity_period, status) VALUES
+(decode('a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6', 'hex'), decode('aa11bb22cc33dd44ee55ff66aa77bb88', 'hex'), 1, '2026-12-31', 'ACTIVE'),
+(decode('b2c3d4e5f6a1b8c9d0e1f2a3b4c5d6a7', 'hex'), decode('bb22cc33dd44ee55ff66aa77bb88aa11', 'hex'), 1, '2025-10-31', 'ACTIVE'),
+(decode('c3d4e5f6a1b2b8c9d0e1f2a3b4c5d6a7', 'hex'), decode('cc33dd44ee55ff66aa77bb88aa11bb22', 'hex'), 2, '2024-07-31', 'BLOCKED'),
+(decode('d4e5f6a1b2c3c9d0e1f2a3b4c5d6a7b8', 'hex'), decode('dd44ee55ff66aa77bb88aa11bb22cc33', 'hex'), 3, '2027-01-31', 'EXPIRED');
 
 -- Вставка транзакций
 INSERT INTO transactions (producer, consumer, amount, transaction_date) VALUES

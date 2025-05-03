@@ -8,20 +8,21 @@ import lombok.experimental.FieldDefaults;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity
 @Table(name = "users")
-@Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Builder
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    Integer id;
+    @Column(name = "id", nullable = false, columnDefinition = "uuid")
+    UUID id;
 
     @Column(name = "first_name", nullable = false)
     String firstName;
@@ -33,7 +34,7 @@ public class UserEntity {
     String email;
 
     @Column(name = "password", nullable = false, columnDefinition = "BYTEA")
-    byte[] password;
+    String password;
 
     @Column(name = "role", nullable = false)
     @Enumerated(EnumType.STRING)
