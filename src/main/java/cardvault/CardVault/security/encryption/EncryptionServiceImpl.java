@@ -55,6 +55,6 @@ class EncryptionServiceImpl implements EncryptionService{
             return "****";
         }
         String last4 = cardNumber.substring(cardNumber.length() - 4);
-        return "**** **** ****" + last4;
+        return "**** **** **** " + last4;
     }
 }

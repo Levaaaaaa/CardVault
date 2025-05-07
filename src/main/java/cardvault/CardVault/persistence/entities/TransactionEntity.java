@@ -1,8 +1,7 @@
 package cardvault.CardVault.persistence.entities;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Data;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.Check;
 
@@ -14,22 +13,13 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "transactions")
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@Builder
 public class TransactionEntity {
-//    CREATE TABLE transactions(
-//            id SERIAL PRIMARY KEY,
-//            producer BIGINT NOT NULL,
-//            consumer BIGINT NOT NULL,
-//            transaction_date timestamp not null,
-//            amount DECIMAL(12, 2) NOT NULL CHECK(amount > 0),
-//    CONSTRAINT fk_consumer
-//    FOREIGN KEY (consumer)
-//    REFERENCES cards(id),
-//    CONSTRAINT fk_producer
-//    FOREIGN KEY (producer)
-//    REFERENCES cards(id),
-//);
     @Id
     @Column(name = "id", nullable = false, columnDefinition = "uuid")
     UUID id;

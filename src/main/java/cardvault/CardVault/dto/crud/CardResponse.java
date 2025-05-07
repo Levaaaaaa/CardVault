@@ -4,6 +4,7 @@ import cardvault.CardVault.enums.CardStatus;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -19,7 +20,7 @@ public class CardResponse {
     String maskedCardNumber;
     UserDTO cardOwner;
     Date validityPeriod;
-
+    BigDecimal amount;
     CardStatus status;
     LocalDateTime createdAt;
 }

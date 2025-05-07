@@ -6,9 +6,10 @@ import cardvault.CardVault.enums.CardStatus;
 import cardvault.CardVault.enums.UserRole;
 import cardvault.CardVault.persistence.entities.CardEntity;
 import cardvault.CardVault.persistence.entities.UserEntity;
+import cardvault.CardVault.persistence.mappers.CardMapper;
 import cardvault.CardVault.persistence.mappers.UserMapper;
 import cardvault.CardVault.persistence.repositories.CardRepository;
-import cardvault.CardVault.persistence.repositories.UserRepository;
+import cardvault.CardVault.security.GetCurrentUserService;
 import cardvault.CardVault.security.encryption.EncryptionService;
 import cardvault.CardVault.security.hash.HashService;
 import jakarta.persistence.EntityExistsException;
@@ -17,7 +18,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.AccessDeniedException;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -30,8 +30,6 @@ public class CardService {
     @Autowired
     private CardRepository cardRepository;
 
-    @Autowired
-    private UserRepository userRepository;
 //    @Autowired
 //    private CardMapper cardMapper;
 
@@ -44,15 +42,19 @@ public class CardService {
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+    private GetCurrentUserService getCurrentUserService;
     //todo check card's user existing in db!!!
 
+    @Autowired
+    private CardMapper cardMapper;
     //create
     public CardResponse create(CreateCardRequest cardDTO) {
         try {
             CardEntity cardEntity = getCardByNumber(cardDTO.getCardNumber());
         }
         catch (EntityNotFoundException e) {
-            UserEntity currentUser = getCurrentUser();
+            UserEntity currentUser = getCurrentUserService.getCurrentUser();
             CardEntity entity = CardEntity.builder().
                     cardNumber(encryptionService.encrypt(cardDTO.getCardNumber()))
                     .id(UUID.randomUUID())
@@ -60,63 +62,74 @@ public class CardService {
                     .createdAt(LocalDateTime.now())
                     .cardOwner(currentUser)
                     .status(CardStatus.ACTIVE)
-                    .balance(BigDecimal.ZERO)
+                    .balance(cardDTO.getStartBalance())
                     .validityPeriod(cardDTO.getValidityPeriod())
                     .build();
             cardRepository.save(entity);
-            return buildCardResponse(entity);
+            return cardMapper.entityToDTO(entity);
         }
         throw new EntityExistsException("ERROR_CODE_5");
     }
 
     //read
     public Page<CardResponse> getCards(Pageable pageable) {
-        UserEntity currentUser = getCurrentUser();
+        UserEntity currentUser = getCurrentUserService.getCurrentUser();
         boolean isAdmin = currentUser.getUserRole().equals(UserRole.ROLE_ADMIN);
         UUID ownerId = isAdmin ? null : currentUser.getId();
 
         return cardRepository.searchCards(ownerId, pageable).map(
-                this::buildCardResponse
+                cardMapper::entityToDTO
         );
     }
 
     public CardResponse getCardByUUID(String uuid) {
-        UserEntity currentUser = getCurrentUser();
+        UserEntity currentUser = getCurrentUserService.getCurrentUser();
         CardEntity cardEntity = getCardByUUID(UUID.fromString(uuid));
 
         if (currentUser.getId().equals(cardEntity.getCardOwner().getId())) {
-            return buildCardResponse(cardEntity);
+            return cardMapper.entityToDTO(cardEntity);
         }
         throw new AccessDeniedException("ERROR_CODE_2");
     }
+
+    public CardResponse activateCard(UUID cardUUID) throws EntityNotFoundException {
+        if (getCurrentUserService.getCurrentUser().getUserRole().equals(UserRole.ROLE_USER)) {
+            throw new AccessDeniedException("ERROR_CODE_2");
+        }
+        return updateCardStatus(cardUUID, CardStatus.ACTIVE);
+    }
+
+    public CardResponse blockCard(UUID cardUUID) throws EntityNotFoundException {
+        return updateCardStatus(cardUUID, CardStatus.BLOCKED);
+    }
     //update
-//    public CardResponse updateCardStatus(CreateCardRequest request) throws EntityNotFoundException{
-//        //user can only block own card
-//        //admin can block or activate any card
-//
-//        UserEntity currentUser = getCurrentUser();
-//        boolean isAdmin = currentUser.getUserRole().equals(UserRole.ROLE_ADMIN);
-//
-//        CardEntity cardEntity = getCardByNumber(request.getCardNumber());
-//        if (cardEntity.getStatus().equals(CardStatus.EXPIRED)) {
-//            throw new IllegalStateException("ERROR_CODE_3");
-//        }
-//        if (isAdmin) {
-//            cardEntity.setStatus(request.isBlocked() ? CardStatus.BLOCKED : CardStatus.ACTIVE);
-//            return buildCardResponse(cardEntity);
-//        }
-//
-//        if (cardEntity.getCardOwner().getId().equals(currentUser.getId()) && request.isBlocked()){
-//            cardEntity.setStatus(CardStatus.BLOCKED);
-//            return buildCardResponse(cardEntity);
-//        }
-//
-//        throw new AccessDeniedException("ERROR_CODE_2");
-//    }
+    private CardResponse updateCardStatus(UUID cardUUID, CardStatus status) throws EntityNotFoundException{
+        //user can only block own card
+        //admin can block or activate any card
+
+        UserEntity currentUser = getCurrentUserService.getCurrentUser();
+        boolean isAdmin = currentUser.getUserRole().equals(UserRole.ROLE_ADMIN);
+
+        CardEntity cardEntity = getCardByUUID(cardUUID);
+        if (cardEntity.getStatus().equals(CardStatus.EXPIRED)) {
+            throw new IllegalStateException("ERROR_CODE_3");
+        }
+        if (isAdmin) {
+            cardEntity.setStatus(status);
+            return cardMapper.entityToDTO(cardEntity);
+        }
+
+        if (cardEntity.getCardOwner().getId().equals(currentUser.getId()) && !status.equals(CardStatus.BLOCKED)){
+            cardEntity.setStatus(status);
+            return cardMapper.entityToDTO(cardEntity);
+        }
+
+        throw new AccessDeniedException("ERROR_CODE_2");
+    }
 
     //delete
     public void deleteCard(String uuid) {
-        UserEntity currentUser = getCurrentUser();
+        UserEntity currentUser = getCurrentUserService.getCurrentUser();
         boolean isAdmin = currentUser.getUserRole().equals(UserRole.ROLE_ADMIN);
 
         CardEntity card = getCardByUUID(UUID.fromString(uuid));
@@ -143,27 +156,5 @@ public class CardService {
             throw new EntityNotFoundException("ERROR_CODE_1");
         }
         return optionalCard.get();
-    }
-    private UserEntity getCurrentUser() {
-        Optional<UserEntity> optional = userRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
-        if (optional.isEmpty()) {
-            throw new EntityNotFoundException("ERROR_CODE_4");
-        }
-        return optional.get();
-    }
-
-    private CardResponse buildCardResponse(CardEntity card) {
-        return CardResponse.builder()
-                .maskedCardNumber(
-                        encryptionService.masked(
-                                encryptionService.decrypt(card.getCardNumber())
-                        )
-                )
-                .cardUuid(card.getId())
-                .validityPeriod(card.getValidityPeriod())
-                .cardOwner(userMapper.entityToDto(card.getCardOwner()))
-                .status(card.getStatus())
-                .createdAt(card.getCreatedAt())
-                .build();
     }
 }

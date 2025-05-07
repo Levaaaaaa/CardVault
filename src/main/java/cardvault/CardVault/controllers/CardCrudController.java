@@ -14,6 +14,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 import static org.springframework.http.HttpStatus.OK;
 
@@ -47,6 +48,27 @@ public class CardCrudController {
         return ResponseEntity.status(OK).body(cardService.getCardByUUID(uuid));
     }
 
+    @PatchMapping("/activate/{uuid}")
+    public ResponseEntity<CardResponse> activateCard(
+            @PathVariable("uuid")
+            @Pattern(
+                    regexp = "^[0-9a-fA-F]{8}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{12}$",
+                    message = "ERROR_CODE_19")
+            String uuid
+    ) {
+        return ResponseEntity.status(OK).body(cardService.activateCard(UUID.fromString(uuid)));
+    }
+
+    @PatchMapping("/block/{uuid}")
+    public ResponseEntity<CardResponse> blockCard(
+            @PathVariable("id")
+            @Pattern(
+                    regexp = "^[0-9a-fA-F]{8}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{12}$",
+                    message = "ERROR_CODE_19")
+            String uuid
+    ) {
+        return ResponseEntity.status(OK).body(cardService.blockCard(UUID.fromString(uuid)));
+    }
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(
             @PathVariable("id")

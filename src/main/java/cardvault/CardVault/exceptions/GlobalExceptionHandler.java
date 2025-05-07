@@ -69,6 +69,12 @@ public class GlobalExceptionHandler {
         return buildErrorMessage(e);
     }
 
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(IllegalStateException.class)
+    public ErrorMessage illegalStateException(IllegalStateException e) {
+        return buildErrorMessage(e);
+    }
+
     private ErrorMessage buildErrorMessage(Exception e) {
         return new ErrorMessage(errorFactory.buildError(e.getMessage()).getDescription());
     }

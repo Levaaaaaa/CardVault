@@ -1,11 +1,13 @@
 package cardvault.CardVault.dto.crud;
 
+import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 
 @Getter
@@ -23,4 +25,7 @@ public class CreateCardRequest {
     @Future(message = "ERROR_CODE_8")
     Date validityPeriod;
 
+    @NotNull(message = "ERROR_CODE_22")
+    @DecimalMin(value = "0.01", message = "ERROR_CODE_22")
+    BigDecimal startBalance;
 }

@@ -35,6 +35,8 @@ Test task for Java internship in EffectiveMobile
     echo APP_JWT_EXPIRATION_MS=900000>>src/main/resources/cardvault-app.env
     echo SPRING_PROFILES_ACTIVE=docker>>src/main/resources/cardvault-app.env
     echo APP_CARD_NUMBER_ENCRYPT_SECRET=CARD_NUMBER_ENCR>>src/main/resources/cardvault-app.env
+    echo ADMIN_EMAIL=admin@example.com>>src/main/resources/cardvault-app.env
+    echo ADMIN_PASSWORD=strong_password>>src/main/resources/cardvault-app.env
 ```
    
    ```

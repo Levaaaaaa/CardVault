@@ -8,7 +8,7 @@ CREATE TABLE users (
   last_name varchar(100) NOT NULL,
   email varchar(100) not null unique,
   password VARCHAR(64) not null,
-  role user_role NOT NULL,
+  role varchar(10) NOT NULL,
   created_at TIMESTAMP DEFAULT now(),
   updated_at TIMESTAMP DEFAULT now(),
   enabled BOOLEAN NOT NULL

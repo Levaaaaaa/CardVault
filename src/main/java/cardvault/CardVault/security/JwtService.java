@@ -6,7 +6,9 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Scope;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -15,8 +17,11 @@ import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.util.Date;
 
+import static org.springframework.beans.factory.config.ConfigurableBeanFactory.SCOPE_PROTOTYPE;
+
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class JwtService {
     @Value("${application.jwt.secret.key}")
     private String secretKey;
@@ -46,7 +51,9 @@ public class JwtService {
 
     public boolean validateToken(String token, UserDetails userDetails) {
         String username = extractUsername(token);
-        return userDetails.getUsername().equals(username) && !tokenIsExpired(token);
+        boolean result = userDetails.getUsername().equals(username) && !tokenIsExpired(token);
+        log.debug("Validating token for user: {}, valid: {}", userDetails.getUsername(), result);
+        return result;
     }
 
     public boolean tokenIsExpired(String token) {

@@ -35,7 +35,8 @@ public class SecurityConfiguration {
                 .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/**").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/cards/**").hasRole("USER")
+                        .requestMatchers("/cards/**").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers("/transactions/**").hasAnyRole("USER", "ADMIN")
                         .anyRequest().authenticated()
                 )
 //                .addFilter(jwtAuthenticationFilter)
