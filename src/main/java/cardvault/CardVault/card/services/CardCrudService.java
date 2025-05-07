@@ -1,14 +1,14 @@
-package cardvault.CardVault.services.crud;
+package cardvault.CardVault.card.services;
 
-import cardvault.CardVault.dto.crud.CreateCardRequest;
-import cardvault.CardVault.dto.crud.CardResponse;
+import cardvault.CardVault.card.repositories.CardRepository;
+import cardvault.CardVault.card.dto.CreateCardRequest;
+import cardvault.CardVault.card.dto.CardResponse;
 import cardvault.CardVault.enums.CardStatus;
 import cardvault.CardVault.enums.UserRole;
-import cardvault.CardVault.persistence.entities.CardEntity;
+import cardvault.CardVault.card.entity.CardEntity;
 import cardvault.CardVault.persistence.entities.UserEntity;
-import cardvault.CardVault.persistence.mappers.CardMapper;
+import cardvault.CardVault.card.mapper.CardMapper;
 import cardvault.CardVault.persistence.mappers.UserMapper;
-import cardvault.CardVault.persistence.repositories.CardRepository;
 import cardvault.CardVault.security.GetCurrentUserService;
 import cardvault.CardVault.security.encryption.EncryptionService;
 import cardvault.CardVault.security.hash.HashService;
@@ -20,7 +20,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.UUID;
