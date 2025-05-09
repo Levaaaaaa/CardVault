@@ -24,7 +24,12 @@ public class CardFilterDTO {
     @Pattern(
             regexp = "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
             message = "ERROR_CODE_27")
-    UUID cardOwnerId;
+    String cardOwnerId;
+
+    @Pattern(
+            regexp = "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+            message = "ERROR_CODE_19")
+    String id;
 
     LocalDateTime validityFrom;
     LocalDateTime validityTo;
@@ -36,7 +41,7 @@ public class CardFilterDTO {
     BigDecimal balanceMax;
 
     @ValidEnum(enumClass = CardStatus.class, message = "ERROR_CODE_28")
-    CardStatus status;
+    String status;
 
     LocalDateTime createAfter;
     LocalDateTime createBefore;

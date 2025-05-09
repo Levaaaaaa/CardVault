@@ -1,8 +1,8 @@
-package cardvault.CardVault.security.auth.controllers;
+package cardvault.CardVault.core.users.controllers;
 
-import cardvault.CardVault.security.auth.dto.login.LoginRequestDTO;
-import cardvault.CardVault.security.auth.dto.register.RegisterRequestDTO;
-import cardvault.CardVault.security.auth.services.UserAuthService;
+import cardvault.CardVault.core.users.dto.LoginRequestDTO;
+import cardvault.CardVault.core.users.dto.RegisterRequestDTO;
+import cardvault.CardVault.core.users.services.auth.UserAuthService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

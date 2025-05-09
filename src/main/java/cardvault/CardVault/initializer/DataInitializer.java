@@ -13,9 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+import java.nio.CharBuffer;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -33,10 +35,13 @@ public class DataInitializer implements ApplicationRunner {
     private CardRepository cardRepository;
 
     @Autowired
-    private EncryptionService encryptionService;
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
     private HashService hashService;
+
+    @Autowired
+    private EncryptionService encryptionService;
 
     @Value("${app.admin.email}")
     private String adminEmail;
@@ -53,7 +58,7 @@ public class DataInitializer implements ApplicationRunner {
         UserEntity alice = UserEntity.builder()
                     .id(UUID.randomUUID())
                     .email("alice@example.com")
-                    .password(new String(encryptionService.encrypt("password1")))
+                    .password(passwordEncoder.encode(CharBuffer.wrap("password1")))
                     .userRole(ROLE_USER)
                     .createdAt(LocalDateTime.now())
                     .updatedAt(LocalDateTime.now())
@@ -65,7 +70,7 @@ public class DataInitializer implements ApplicationRunner {
         UserEntity bob = UserEntity.builder()
                     .id(UUID.randomUUID())
                     .email("bob@example.com")
-                    .password(new String(encryptionService.encrypt("password2")))
+                    .password(passwordEncoder.encode(CharBuffer.wrap("password2")))
                     .userRole(ROLE_USER)
                     .createdAt(LocalDateTime.now())
                     .updatedAt(LocalDateTime.now())
@@ -76,7 +81,7 @@ public class DataInitializer implements ApplicationRunner {
         UserEntity admin = UserEntity.builder().id(UUID.randomUUID())
                 .firstName("admin")
                 .lastName("admin")
-                .password(new String(encryptionService.encrypt(adminPassword)))
+                .password(passwordEncoder.encode(CharBuffer.wrap(adminPassword)))
                 .email(adminEmail)
                 .createdAt(LocalDateTime.now())
                 .updatedAt(LocalDateTime.now())
@@ -86,7 +91,7 @@ public class DataInitializer implements ApplicationRunner {
         userRepository.saveAll(List.of(alice, bob, admin));
 
         for (int i = 0; i < 10; i++) {
-            String plainCardNumber = "40000000000000" + i;
+            String plainCardNumber = "4000-0000-0000-000" + i;
 
             byte[] encryptedCardNumber = encryptionService.encrypt(plainCardNumber);
             byte[] cardNumberHash = hashService.hash(plainCardNumber);

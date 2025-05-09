@@ -17,7 +17,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlbWFpbEBleGFtcGxlLmNvbSIsImlhdCI6MTc0NjY0OTg1NSwiZXhwIjoxNzQ2NzM5ODU1fQ.pMGjpEp9MKhWm8qKpWzrUq2RWEaJsz1cvkeX2QtTukc",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJib2JAZXhhbXBsZS5jb20iLCJpYXQiOjE3NDY4MTE1OTQsImV4cCI6MTc0NjkwMTU5NH0.x3NBl40JPXlKSJphfHniha16I5T5mWkslseWuzxfrJ4",
 									"type": "string"
 								}
 							]
@@ -38,14 +38,14 @@
 					"response": []
 				},
 				{
-					"name": "get card by id",
+					"name": "get cards page",
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlbWFpbEBleGFtcGxlLmNvbSIsImlhdCI6MTc0NjU1OTc2MSwiZXhwIjoxNzQ2NTYwNjYxfQ.gM-s0PDz55O5AfxtWqALpw9cAC25jP0aPXf7jkuOK1A",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGljZUBleGFtcGxlLmNvbSIsImlhdCI6MTc0NjgxMDY2NywiZXhwIjoxNzQ2OTAwNjY3fQ.6Rs5Yh32zD2pXiJ2s-BzoHnom1aVNVxkonM33RsfvQQ",
 									"type": "string"
 								}
 							]
@@ -53,14 +53,57 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/cards/fc7c7e9c-b2b1-4df4-85ad-d3b62141d096",
+							"raw": "localhost:8080/cards?page=2&size=1",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"cards",
-								"fc7c7e9c-b2b1-4df4-85ad-d3b62141d096"
+								"cards"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2"
+								},
+								{
+									"key": "size",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get card by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGljZUBleGFtcGxlLmNvbSIsImlhdCI6MTc0NjgxMDU4NiwiZXhwIjoxNzQ2OTAwNTg2fQ.1r4jSRVn5whAO0AqXaMNWHy8ZprQXm1uSxg8fx8N4mc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/cards?id=13f44588-e61b-4808-9656-02876afd5d97",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cards"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "13f44588-e61b-4808-9656-02876afd5d97"
+								}
 							]
 						}
 					},
@@ -74,7 +117,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlbWFpbEBleGFtcGxlLmNvbSIsImlhdCI6MTc0NjI4NzcwNCwiZXhwIjoxNzQ2Mjg4NjA0fQ.b87_CXZhT8fpgTDOYYXorS7k8NkgEIKoThajAcd2AbM",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGljZUBleGFtcGxlLmNvbSIsImlhdCI6MTc0NjgxMDU4NiwiZXhwIjoxNzQ2OTAwNTg2fQ.1r4jSRVn5whAO0AqXaMNWHy8ZprQXm1uSxg8fx8N4mc",
 									"type": "string"
 								}
 							]
@@ -82,14 +125,19 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/cards/invalid-uuid",
+							"raw": "localhost:8080/cards?id=invalid_id",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"cards",
-								"invalid-uuid"
+								"cards"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "invalid_id"
+								}
 							]
 						}
 					},
@@ -103,7 +151,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlbWFpbEBleGFtcGxlLmNvbSIsImlhdCI6MTc0NjY0OTg1NSwiZXhwIjoxNzQ2NzM5ODU1fQ.pMGjpEp9MKhWm8qKpWzrUq2RWEaJsz1cvkeX2QtTukc",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGljZUBleGFtcGxlLmNvbSIsImlhdCI6MTc0NjgxMDk5MCwiZXhwIjoxNzQ2OTAwOTkwfQ.5fqTMzD1GtHZ-yfEMm0q08hK8uqDQBj80JV3XOkc9q4",
 									"type": "string"
 								}
 							]
@@ -111,19 +159,22 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/cards/search?balanceMin=15.00",
+							"raw": "localhost:8080/cards?balanceMin=1.00&cardNumber=4000-0000-0000-0000",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"cards",
-								"search"
+								"cards"
 							],
 							"query": [
 								{
 									"key": "balanceMin",
-									"value": "15.00"
+									"value": "1.00"
+								},
+								{
+									"key": "cardNumber",
+									"value": "4000-0000-0000-0000"
 								}
 							]
 						}
@@ -138,7 +189,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlbWFpbEBleGFtcGxlLmNvbSIsImlhdCI6MTc0NjY0OTg1NSwiZXhwIjoxNzQ2NzM5ODU1fQ.pMGjpEp9MKhWm8qKpWzrUq2RWEaJsz1cvkeX2QtTukc",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGljZUBleGFtcGxlLmNvbSIsImlhdCI6MTc0NjgxMDk5MCwiZXhwIjoxNzQ2OTAwOTkwfQ.5fqTMzD1GtHZ-yfEMm0q08hK8uqDQBj80JV3XOkc9q4",
 									"type": "string"
 								}
 							]
@@ -146,19 +197,18 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/cards/search?cardNumber=1111-1111-1111-1111",
+							"raw": "localhost:8080/cards?cardNumber=4000-0000-0000-0008",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"cards",
-								"search"
+								"cards"
 							],
 							"query": [
 								{
 									"key": "cardNumber",
-									"value": "1111-1111-1111-1111"
+									"value": "4000-0000-0000-0008"
 								}
 							]
 						}
@@ -354,13 +404,13 @@
 			"name": "login user",
 			"item": [
 				{
-					"name": "login user",
+					"name": "login alice",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\" : \"email@example.com\",\r\n    \"password\" : \"password\"   \r\n}",
+							"raw": "{\r\n    \"email\" : \"alice@example.com\",\r\n    \"password\" : \"password1\"   \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -410,13 +460,69 @@
 					"response": []
 				},
 				{
-					"name": "login admin",
+					"name": "login admin local",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"email\" : \"localadminemail@example.com\",\r\n    \"password\" : \"adminpassword\"   \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login admin docker",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"localadminemail@example.com\",\r\n    \"password\" : \"adminpassword\"   \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login bob",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"bob@example.com\",\r\n    \"password\" : \"password2\"   \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -467,6 +573,36 @@
 								"cards",
 								"activate",
 								"bbca33ef-c313-4148-bc51-366a327f354b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "block card",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJib2JAZXhhbXBsZS5jb20iLCJpYXQiOjE3NDY4MTE1OTQsImV4cCI6MTc0NjkwMTU5NH0.x3NBl40JPXlKSJphfHniha16I5T5mWkslseWuzxfrJ4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/cards/block/58d87faf-f281-4093-9395-0ea0f435136d",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cards",
+								"block",
+								"58d87faf-f281-4093-9395-0ea0f435136d"
 							]
 						}
 					},
@@ -546,6 +682,50 @@
 							"port": "8080",
 							"path": [
 								"transactions"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "docs",
+			"item": [
+				{
+					"name": "OpenAPI",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/v3/api-docs",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v3",
+								"api-docs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "swagger",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/swagger-ui/index.html",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"swagger-ui",
+								"index.html"
 							]
 						}
 					},

@@ -17,7 +17,7 @@ import java.util.UUID;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class CardResponse {
-    UUID cardUuid;
+    UUID id;
     String maskedCardNumber;
     UserDTO cardOwner;
     Date validityPeriod;

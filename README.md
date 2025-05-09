@@ -20,7 +20,16 @@ Test task for Java internship in EffectiveMobile
 - Docker & Docker Compose (for local DB)
 - Git
 
-### Run the application
+### Run locally
+1. 
+```
+docker build -t cardvault-db-image ./postgres/
+``` 
+2.
+```
+docker run --env-file=./postgres/cardvault_db.env -p 5000:5432 cardvault-db-image
+```
+### Run the application by Docker Compose
 
 1. Clone repo, change directory
     ```

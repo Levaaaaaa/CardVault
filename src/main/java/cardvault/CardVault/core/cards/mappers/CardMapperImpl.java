@@ -24,7 +24,7 @@ class CardMapperImpl implements CardMapper{
                                     encryptionService.decrypt(card.getCardNumber())
                             )
                     )
-                    .cardUuid(card.getId())
+                    .id(card.getId())
                     .validityPeriod(card.getValidityPeriod())
                     .cardOwner(userMapper.entityToDto(card.getCardOwner()))
                     .status(card.getStatus())

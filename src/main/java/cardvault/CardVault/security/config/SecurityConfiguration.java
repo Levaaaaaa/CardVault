@@ -31,6 +31,8 @@ public class SecurityConfiguration {
                 .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/**").permitAll()
+                        .requestMatchers("/swagger-ui/**").permitAll()
+                        .requestMatchers("v3/api-docs/**").permitAll()
                         .requestMatchers("/cards/**").hasAnyRole("USER", "ADMIN")
                         .requestMatchers("/transactions/**").hasAnyRole("USER", "ADMIN")
                         .anyRequest().authenticated()

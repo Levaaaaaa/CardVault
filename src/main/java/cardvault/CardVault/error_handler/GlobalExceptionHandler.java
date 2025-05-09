@@ -2,6 +2,7 @@ package cardvault.CardVault.error_handler;
 
 import cardvault.CardVault.error_handler.dto.ErrorDTO;
 import cardvault.CardVault.error_handler.error_factory.ErrorFactory;
+import io.swagger.v3.oas.annotations.Hidden;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.ConstraintViolation;
@@ -20,6 +21,7 @@ import org.springframework.web.context.request.WebRequest;
 
 import java.util.List;
 
+@Hidden
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 

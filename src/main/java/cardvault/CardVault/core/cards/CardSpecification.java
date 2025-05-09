@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Component
 public class CardSpecification {
@@ -19,11 +20,14 @@ public class CardSpecification {
     public Specification<CardEntity> doFilter(CardFilterDTO filter) {
         return (root, query, cb) -> {
             List<Predicate> predicates = new ArrayList<>();
+            if (filter.getId() != null) {
+                predicates.add(cb.equal(root.get("id"), UUID.fromString(filter.getId())));
+            }
             if (filter.getCardNumber() != null) {
                 predicates.add(cb.equal(root.get("cardNumberHash"), hashService.hash(filter.getCardNumber())));
             }
             if (filter.getCardOwnerId() != null) {
-                predicates.add(cb.equal(root.get("cardOwner").get("id"), filter.getCardOwnerId()));
+                predicates.add(cb.equal(root.get("cardOwner").get("id"), UUID.fromString(filter.getCardOwnerId())));
             }
             if (filter.getValidityFrom() != null) {
                 predicates.add(cb.greaterThanOrEqualTo(root.get("validityPeriod"), filter.getValidityFrom()));
@@ -38,7 +42,7 @@ public class CardSpecification {
                 predicates.add(cb.lessThanOrEqualTo(root.get("balance"), filter.getBalanceMax()));
             }
             if (filter.getStatus() != null) {
-                predicates.add(cb.equal(root.get("status"), filter.getStatus()));
+                predicates.add(cb.equal(root.get("status"), CardStatus.valueOf(filter.getStatus())));
             }
             if (filter.getCreateAfter() != null) {
                 predicates.add(cb.greaterThanOrEqualTo(root.get("createdAt"), filter.getCreateAfter()));

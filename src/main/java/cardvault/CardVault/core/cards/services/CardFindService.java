@@ -13,6 +13,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 
 @Service
 public class CardFindService {
@@ -33,11 +35,11 @@ public class CardFindService {
         boolean isAdmin = getCurrentUserService.isAdmin();
         //user can see only own cards
         if (!isAdmin && cardFilter.getCardOwnerId() == null) {
-            cardFilter.setCardOwnerId(currentUser.getId());
+            cardFilter.setCardOwnerId(currentUser.getId().toString());
         }
 
         if (
-                isAdmin || currentUser.getId().equals(cardFilter.getCardOwnerId())
+                isAdmin || currentUser.getId().equals(UUID.fromString(cardFilter.getCardOwnerId()))
         ) {
             return cardRepository.findAll(cardSpecification.doFilter(cardFilter), pageable).map(card -> {return cardMapper.entityToDTO(card);});
         }

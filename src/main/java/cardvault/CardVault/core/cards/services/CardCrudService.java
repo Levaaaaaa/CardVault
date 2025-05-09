@@ -115,6 +115,7 @@ public class CardCrudService {
         }
         if (isAdmin) {
             cardEntity.setStatus(status);
+            cardRepository.save(cardEntity);
             return cardMapper.entityToDTO(cardEntity);
         }
 
@@ -124,6 +125,7 @@ public class CardCrudService {
         }
         if (cardEntity.getCardOwner().getId().equals(currentUser.getId())){
             cardEntity.setStatus(status);
+            cardRepository.save(cardEntity);
             return cardMapper.entityToDTO(cardEntity);
         }
 

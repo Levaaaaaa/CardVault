@@ -7,6 +7,7 @@ import cardvault.CardVault.core.cards.services.CardCrudService;
 import cardvault.CardVault.core.cards.services.CardFindService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -35,26 +36,26 @@ public class CardCrudController {
         return ResponseEntity.status(OK).body(cardCrudService.create(cardDTO));
     }
 
+//    @GetMapping
+//    public ResponseEntity<List<CardResponse>> read(
+//            @PageableDefault(size = 10) Pageable pageable) {
+//        Page<CardResponse> response = cardCrudService.getCards(pageable);
+//        return ResponseEntity.status(OK).body(response.getContent());
+//    }
+//
+//    @GetMapping("/{id}")
+//    public ResponseEntity<CardResponse> getCardByUUID(
+//            @PathVariable("id")
+//            @Pattern(
+//                    regexp = "^[0-9a-fA-F]{8}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{12}$",
+//                    message = "ERROR_CODE_19")
+//            String uuid
+//    ) {
+//        return ResponseEntity.status(OK).body(cardCrudService.getCardByUUID(uuid));
+//    }
+
     @GetMapping
-    public ResponseEntity<List<CardResponse>> read(
-            @PageableDefault(size = 10) Pageable pageable) {
-        Page<CardResponse> response = cardCrudService.getCards(pageable);
-        return ResponseEntity.status(OK).body(response.getContent());
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<CardResponse> getCardByUUID(
-            @PathVariable("id")
-            @Pattern(
-                    regexp = "^[0-9a-fA-F]{8}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{12}$",
-                    message = "ERROR_CODE_19")
-            String uuid
-    ) {
-        return ResponseEntity.status(OK).body(cardCrudService.getCardByUUID(uuid));
-    }
-
-    @GetMapping("/search")
-    public ResponseEntity<List<CardResponse>> getCardByParameters(CardFilterDTO cardFilter, Pageable pageable) {
+    public ResponseEntity<List<CardResponse>> getCardByParameters(@Valid @ParameterObject CardFilterDTO cardFilter, Pageable pageable) {
         return ResponseEntity.status(OK).body(cardFindService.findCards(cardFilter, pageable).getContent());
     }
 
@@ -69,7 +70,7 @@ public class CardCrudController {
         return ResponseEntity.status(OK).body(cardCrudService.activateCard(UUID.fromString(uuid)));
     }
 
-    @PatchMapping("/block/{uuid}")
+    @PatchMapping("/block/{id}")
     public ResponseEntity<CardResponse> blockCard(
             @PathVariable("id")
             @Pattern(
