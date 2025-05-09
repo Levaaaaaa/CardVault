@@ -58,7 +58,6 @@ To access protected endpoints, follow these steps:
 1. Register
    Endpoint: POST /api/auth/register
    Body (JSON):
-
 ```json
 {
 "firstName": "John",
@@ -102,11 +101,48 @@ Upload the file:
 CardVault.postman_collection.json
 ```
 
-📘 API Endpoints Overview
-Method	Endpoint	Description
-POST	/auth/register	Register new user
-POST	/auth/login	Authenticate and get JWT token
-GET	/cards	Get paginated list of cards (auth)
-GET	/cards/{uuid}	Get single card by UUID (auth)
+#### Attention! Don't forget to add actual JWT token to your headers!
+#### If you execute operations with cards don't forget update card's UUID in URLs and request bodies!
 
+### 📘 API Endpoints Overview
+<table>
+   <tr>
+      <th>Method</th>	
+      <th>Endpoint</th>	
+      <th>Description</th> 
+   </tr>
+   <tr>
+      <td>POST</td>	
+      <td>/auth/register</td>	
+      <td>Register new user</td>
+   </tr>
+   <tr>
+      <td>POST</td>	
+      <td>/auth/login</td>	
+      <td>Authenticate and get JWT token</td>
+   </tr>
+   <tr>
+      <td>GET</td>	
+      <td>/cards</td>	
+      <td>Get paginated list of cards (auth)</td>
+   </tr>
+   <tr>
+      <td>GET</td>	
+      <td>/cards/{uuid}</td>	
+      <td>Get single card by UUID (auth)</td>
+   </tr>
+   <tr>
+      <td>GET</td>
+      <td>cards/search?some_parameters</td>
+      <td>Parametrized search</td>
+   </tr>
+</table>
 More endpoints are available in the Postman collection.
+
+### Use
+
+#### Patterns:
+- Factory
+- Builder
+- Specification
+- Singleton

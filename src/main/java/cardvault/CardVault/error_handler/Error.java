@@ -1,4 +1,4 @@
-package cardvault.CardVault.exceptions;
+package cardvault.CardVault.error_handler;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

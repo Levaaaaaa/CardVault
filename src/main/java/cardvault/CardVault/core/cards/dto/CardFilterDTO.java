@@ -1,10 +1,8 @@
-package cardvault.CardVault.card.dto;
+package cardvault.CardVault.core.cards.dto;
 
-import cardvault.CardVault.enums.CardStatus;
-import cardvault.CardVault.exceptions.validators.enum_validator.ValidEnum;
+import cardvault.CardVault.core.cards.CardStatus;
+import cardvault.CardVault.error_handler.validators.enum_validator.ValidEnum;
 import jakarta.validation.constraints.DecimalMin;
-import jakarta.validation.constraints.Future;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.*;
 import lombok.experimental.FieldDefaults;

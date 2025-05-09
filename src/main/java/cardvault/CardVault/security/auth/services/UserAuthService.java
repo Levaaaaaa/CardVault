@@ -1,7 +1,7 @@
-package cardvault.CardVault.auth.services;
+package cardvault.CardVault.security.auth.services;
 
-import cardvault.CardVault.auth.dto.login.LoginRequestDTO;
-import cardvault.CardVault.auth.dto.register.RegisterRequestDTO;
+import cardvault.CardVault.security.auth.dto.login.LoginRequestDTO;
+import cardvault.CardVault.security.auth.dto.register.RegisterRequestDTO;
 import org.springframework.stereotype.Service;
 
 @Service

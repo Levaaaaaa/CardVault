@@ -1,15 +1,15 @@
-package cardvault.CardVault.card.services;
+package cardvault.CardVault.core.cards.services;
 
-import cardvault.CardVault.card.repositories.CardRepository;
-import cardvault.CardVault.card.dto.CreateCardRequest;
-import cardvault.CardVault.card.dto.CardResponse;
-import cardvault.CardVault.enums.CardStatus;
-import cardvault.CardVault.enums.UserRole;
-import cardvault.CardVault.card.entity.CardEntity;
-import cardvault.CardVault.persistence.entities.UserEntity;
-import cardvault.CardVault.card.mappers.CardMapper;
-import cardvault.CardVault.persistence.mappers.UserMapper;
-import cardvault.CardVault.security.GetCurrentUserService;
+import cardvault.CardVault.core.cards.repositories.CardRepository;
+import cardvault.CardVault.core.cards.dto.CreateCardRequest;
+import cardvault.CardVault.core.cards.dto.CardResponse;
+import cardvault.CardVault.core.cards.CardStatus;
+import cardvault.CardVault.core.users.UserRole;
+import cardvault.CardVault.core.cards.entity.CardEntity;
+import cardvault.CardVault.core.users.entities.UserEntity;
+import cardvault.CardVault.core.cards.mappers.CardMapper;
+import cardvault.CardVault.core.users.mappers.UserMapper;
+import cardvault.CardVault.core.users.services.GetCurrentUserService;
 import cardvault.CardVault.security.encryption.EncryptionService;
 import cardvault.CardVault.security.hash.HashService;
 import jakarta.persistence.EntityExistsException;
@@ -118,7 +118,11 @@ public class CardCrudService {
             return cardMapper.entityToDTO(cardEntity);
         }
 
-        if (cardEntity.getCardOwner().getId().equals(currentUser.getId()) && !status.equals(CardStatus.BLOCKED)){
+        if (!status.equals(CardStatus.BLOCKED)) {
+            //user can only block own card
+            throw new AccessDeniedException("ERROR_CODE_30");
+        }
+        if (cardEntity.getCardOwner().getId().equals(currentUser.getId())){
             cardEntity.setStatus(status);
             return cardMapper.entityToDTO(cardEntity);
         }

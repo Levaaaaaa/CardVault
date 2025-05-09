@@ -1,12 +1,12 @@
-package cardvault.CardVault.card.services;
+package cardvault.CardVault.core.cards.services;
 
-import cardvault.CardVault.card.CardSpecification;
-import cardvault.CardVault.card.dto.CardFilterDTO;
-import cardvault.CardVault.card.dto.CardResponse;
-import cardvault.CardVault.card.mappers.CardMapper;
-import cardvault.CardVault.card.repositories.CardRepository;
-import cardvault.CardVault.persistence.entities.UserEntity;
-import cardvault.CardVault.security.GetCurrentUserService;
+import cardvault.CardVault.core.cards.CardSpecification;
+import cardvault.CardVault.core.cards.dto.CardFilterDTO;
+import cardvault.CardVault.core.cards.dto.CardResponse;
+import cardvault.CardVault.core.cards.mappers.CardMapper;
+import cardvault.CardVault.core.cards.repositories.CardRepository;
+import cardvault.CardVault.core.users.entities.UserEntity;
+import cardvault.CardVault.core.users.services.GetCurrentUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

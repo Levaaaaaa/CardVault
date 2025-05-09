@@ -1,7 +1,3 @@
-CREATE TYPE user_role AS ENUM('USER', 'ADMIN');
-
-CREATE TYPE card_status AS ENUM('ACTIVE', 'BLOCKED', 'EXPIRED');
-
 CREATE TABLE users (
   id UUID PRIMARY KEY,
   first_name varchar(100) NOT NULL,
@@ -22,7 +18,7 @@ CREATE TABLE cards (
   card_number_hash BYTEA NOT NULL UNIQUE,
   card_owner UUID NOT NULL,
   validity_period DATE NOT NULL,
-  status card_status NOT NULL,
+  status varchar(10) NOT NULL,
   balance DECIMAL(19, 2) NOT NULL,
   created_at TIMESTAMP DEFAULT now(),
   CONSTRAINT fk_card_owner FOREIGN KEY (card_owner) REFERENCES users (id) ON DELETE CASCADE
@@ -36,6 +32,6 @@ CREATE TABLE transactions (
   consumer UUID NOT NULL,
   transaction_date timestamp not null,
   amount DECIMAL(12, 2) NOT NULL CHECK (amount > 0),
-  CONSTRAINT fk_consumer FOREIGN KEY (consumer) REFERENCES cards (id),
-  CONSTRAINT fk_producer FOREIGN KEY (producer) REFERENCES cards (id)
+  CONSTRAINT fk_consumer FOREIGN KEY (consumer) REFERENCES cards (id) ON DELETE CASCADE,
+  CONSTRAINT fk_producer FOREIGN KEY (producer) REFERENCES cards (id) ON DELETE CASCADE
 );

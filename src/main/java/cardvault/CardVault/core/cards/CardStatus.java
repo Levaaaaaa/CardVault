@@ -1,4 +1,4 @@
-package cardvault.CardVault.enums;
+package cardvault.CardVault.core.cards;
 
 public enum CardStatus {
     //('ACTIVE', 'BLOCKED', 'EXPIRED')

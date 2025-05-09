@@ -1,4 +1,4 @@
-package cardvault.CardVault.dto;
+package cardvault.CardVault.error_handler.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,6 +9,6 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ErrorMessage {
+public class ErrorDTO {
     private String message;
 }

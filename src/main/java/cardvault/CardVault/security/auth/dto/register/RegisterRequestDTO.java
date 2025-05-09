@@ -1,4 +1,4 @@
-package cardvault.CardVault.auth.dto.register;
+package cardvault.CardVault.security.auth.dto.register;
 
 import cardvault.CardVault.error_handler.validators.password_validator.ValidPassword;
 import jakarta.validation.constraints.*;

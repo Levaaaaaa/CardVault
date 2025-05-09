@@ -1,4 +1,4 @@
-package cardvault.CardVault.dto.transfer;
+package cardvault.CardVault.core.transactions.dto;
 
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
@@ -7,7 +7,6 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.math.BigDecimal;
-import java.util.UUID;
 
 @Getter
 @Setter

@@ -1,7 +1,7 @@
-package cardvault.CardVault.card.mappers;
+package cardvault.CardVault.core.cards.mappers;
 
-import cardvault.CardVault.card.dto.CardResponse;
-import cardvault.CardVault.card.entity.CardEntity;
+import cardvault.CardVault.core.cards.dto.CardResponse;
+import cardvault.CardVault.core.cards.entity.CardEntity;
 import org.springframework.stereotype.Component;
 
 @Component

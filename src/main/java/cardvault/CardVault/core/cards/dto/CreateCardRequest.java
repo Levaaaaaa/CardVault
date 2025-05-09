@@ -1,4 +1,4 @@
-package cardvault.CardVault.card.dto;
+package cardvault.CardVault.core.cards.dto;
 
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Future;

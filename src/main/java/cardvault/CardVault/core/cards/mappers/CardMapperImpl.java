@@ -1,8 +1,8 @@
-package cardvault.CardVault.card.mappers;
+package cardvault.CardVault.core.cards.mappers;
 
-import cardvault.CardVault.card.dto.CardResponse;
-import cardvault.CardVault.card.entity.CardEntity;
-import cardvault.CardVault.persistence.mappers.UserMapper;
+import cardvault.CardVault.core.cards.dto.CardResponse;
+import cardvault.CardVault.core.cards.entity.CardEntity;
+import cardvault.CardVault.core.users.mappers.UserMapper;
 import cardvault.CardVault.security.encryption.EncryptionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

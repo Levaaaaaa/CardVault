@@ -1,4 +1,4 @@
-package cardvault.CardVault.security;
+package cardvault.CardVault.core.users.services;
 
 import cardvault.CardVault.core.users.UserRole;
 import cardvault.CardVault.core.users.entities.UserEntity;

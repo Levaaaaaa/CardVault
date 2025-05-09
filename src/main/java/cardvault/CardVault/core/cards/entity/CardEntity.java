@@ -1,7 +1,7 @@
-package cardvault.CardVault.card.entity;
+package cardvault.CardVault.core.cards.entity;
 
-import cardvault.CardVault.enums.CardStatus;
-import cardvault.CardVault.persistence.entities.UserEntity;
+import cardvault.CardVault.core.cards.CardStatus;
+import cardvault.CardVault.core.users.entities.UserEntity;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;

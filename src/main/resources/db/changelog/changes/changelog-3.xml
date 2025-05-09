@@ -28,14 +28,18 @@
                 baseColumnNames="consumer"
                 constraintName="fk_consumer"
                 referencedTableName="cards"
-                referencedColumnNames="id"/>
+                referencedColumnNames="id"
+                deleteCascade="true"
+        />
 
         <addForeignKeyConstraint
                 baseTableName="transactions"
                 baseColumnNames="producer"
                 constraintName="fk_producer"
                 referencedTableName="cards"
-                referencedColumnNames="id"/>
+                referencedColumnNames="id"
+                deleteCascade="true"
+        />
     </changeSet>
 
 </databaseChangeLog>

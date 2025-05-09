@@ -17,7 +17,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlbWFpbEBleGFtcGxlLmNvbSIsImlhdCI6MTc0NjY0MjA3NiwiZXhwIjoxNzQ2NzMyMDc2fQ.xojhewtrOL2CiFB1E6COdElkGwwhziRuUDflhhewzfY",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlbWFpbEBleGFtcGxlLmNvbSIsImlhdCI6MTc0NjY0OTg1NSwiZXhwIjoxNzQ2NzM5ODU1fQ.pMGjpEp9MKhWm8qKpWzrUq2RWEaJsz1cvkeX2QtTukc",
 									"type": "string"
 								}
 							]
@@ -90,6 +90,76 @@
 							"path": [
 								"cards",
 								"invalid-uuid"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search cards with min balance 15.00",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlbWFpbEBleGFtcGxlLmNvbSIsImlhdCI6MTc0NjY0OTg1NSwiZXhwIjoxNzQ2NzM5ODU1fQ.pMGjpEp9MKhWm8qKpWzrUq2RWEaJsz1cvkeX2QtTukc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/cards/search?balanceMin=15.00",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cards",
+								"search"
+							],
+							"query": [
+								{
+									"key": "balanceMin",
+									"value": "15.00"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search card by number",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlbWFpbEBleGFtcGxlLmNvbSIsImlhdCI6MTc0NjY0OTg1NSwiZXhwIjoxNzQ2NzM5ODU1fQ.pMGjpEp9MKhWm8qKpWzrUq2RWEaJsz1cvkeX2QtTukc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/cards/search?cardNumber=1111-1111-1111-1111",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cards",
+								"search"
+							],
+							"query": [
+								{
+									"key": "cardNumber",
+									"value": "1111-1111-1111-1111"
+								}
 							]
 						}
 					},

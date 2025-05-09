@@ -1,4 +1,4 @@
-package cardvault.CardVault.exceptions.validators.password_validator;
+package cardvault.CardVault.error_handler.validators.password_validator;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;

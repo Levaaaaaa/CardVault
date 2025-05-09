@@ -1,4 +1,4 @@
-package cardvault.CardVault.security.user_details;
+package cardvault.CardVault.security.config.user_details;
 
 import cardvault.CardVault.core.users.entities.UserEntity;
 import org.springframework.security.core.GrantedAuthority;

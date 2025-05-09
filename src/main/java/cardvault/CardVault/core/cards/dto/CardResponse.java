@@ -1,7 +1,7 @@
-package cardvault.CardVault.card.dto;
+package cardvault.CardVault.core.cards.dto;
 
-import cardvault.CardVault.dto.crud.UserDTO;
-import cardvault.CardVault.enums.CardStatus;
+import cardvault.CardVault.core.users.dto.UserDTO;
+import cardvault.CardVault.core.cards.CardStatus;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 

@@ -1,4 +1,4 @@
-package cardvault.CardVault.exceptions.validators.enum_validator;
+package cardvault.CardVault.error_handler.validators.enum_validator;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;

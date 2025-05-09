@@ -1,8 +1,8 @@
-package cardvault.CardVault.controllers;
+package cardvault.CardVault.core.transactions.controllers;
 
-import cardvault.CardVault.dto.transfer.TransferRequest;
-import cardvault.CardVault.dto.transfer.TransferResponse;
-import cardvault.CardVault.services.transfer.TransferService;
+import cardvault.CardVault.core.transactions.dto.TransferRequest;
+import cardvault.CardVault.core.transactions.dto.TransferResponse;
+import cardvault.CardVault.core.transactions.services.TransferService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

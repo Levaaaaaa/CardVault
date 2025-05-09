@@ -1,6 +1,6 @@
-package cardvault.CardVault.persistence.entities;
+package cardvault.CardVault.core.transactions.entities;
 
-import cardvault.CardVault.card.entity.CardEntity;
+import cardvault.CardVault.core.cards.entity.CardEntity;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;

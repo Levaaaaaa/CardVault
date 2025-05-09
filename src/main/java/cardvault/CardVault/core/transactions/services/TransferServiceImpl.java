@@ -1,15 +1,15 @@
-package cardvault.CardVault.services.transfer;
+package cardvault.CardVault.core.transactions.services;
 
-import cardvault.CardVault.dto.transfer.TransferRequest;
-import cardvault.CardVault.dto.transfer.TransferResponse;
-import cardvault.CardVault.enums.CardStatus;
-import cardvault.CardVault.card.entity.CardEntity;
-import cardvault.CardVault.persistence.entities.TransactionEntity;
-import cardvault.CardVault.persistence.entities.UserEntity;
-import cardvault.CardVault.card.mappers.CardMapper;
-import cardvault.CardVault.card.repositories.CardRepository;
-import cardvault.CardVault.persistence.repositories.TransactionRepository;
-import cardvault.CardVault.security.GetCurrentUserService;
+import cardvault.CardVault.core.transactions.dto.TransferRequest;
+import cardvault.CardVault.core.transactions.dto.TransferResponse;
+import cardvault.CardVault.core.cards.CardStatus;
+import cardvault.CardVault.core.cards.entity.CardEntity;
+import cardvault.CardVault.core.transactions.entities.TransactionEntity;
+import cardvault.CardVault.core.users.entities.UserEntity;
+import cardvault.CardVault.core.cards.mappers.CardMapper;
+import cardvault.CardVault.core.cards.repositories.CardRepository;
+import cardvault.CardVault.core.transactions.repositories.TransactionRepository;
+import cardvault.CardVault.core.users.services.GetCurrentUserService;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;

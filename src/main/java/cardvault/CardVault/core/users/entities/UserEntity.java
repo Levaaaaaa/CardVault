@@ -1,12 +1,10 @@
-package cardvault.CardVault.persistence.entities;
+package cardvault.CardVault.core.users.entities;
 
-import cardvault.CardVault.enums.UserRole;
+import cardvault.CardVault.core.users.UserRole;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import java.sql.Date;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 

@@ -1,9 +1,7 @@
-package cardvault.CardVault.persistence.mappers;
+package cardvault.CardVault.core.users.mappers;
 
-import cardvault.CardVault.dto.crud.UserDTO;
-import cardvault.CardVault.persistence.entities.UserEntity;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
+import cardvault.CardVault.core.users.dto.UserDTO;
+import cardvault.CardVault.core.users.entities.UserEntity;
 import org.springframework.stereotype.Component;
 
 @Component

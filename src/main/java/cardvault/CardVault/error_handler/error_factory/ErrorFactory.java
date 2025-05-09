@@ -1,6 +1,6 @@
-package cardvault.CardVault.exceptions.error_factory;
+package cardvault.CardVault.error_handler.error_factory;
 
-import cardvault.CardVault.exceptions.Error;
+import cardvault.CardVault.error_handler.Error;
 import org.springframework.stereotype.Component;
 
 @Component

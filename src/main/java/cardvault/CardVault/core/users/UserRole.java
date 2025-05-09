@@ -1,4 +1,4 @@
-package cardvault.CardVault.enums;
+package cardvault.CardVault.core.users;
 
 public enum UserRole {
     ROLE_USER("ROLE_USER"),

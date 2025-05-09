@@ -1,6 +1,6 @@
-package cardvault.CardVault.card.repositories;
+package cardvault.CardVault.core.cards.repositories;
 
-import cardvault.CardVault.card.entity.CardEntity;
+import cardvault.CardVault.core.cards.entity.CardEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

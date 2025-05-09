@@ -1,6 +1,6 @@
-package cardvault.CardVault.dto.transfer;
+package cardvault.CardVault.core.transactions.dto;
 
-import cardvault.CardVault.card.dto.CardResponse;
+import cardvault.CardVault.core.cards.dto.CardResponse;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 

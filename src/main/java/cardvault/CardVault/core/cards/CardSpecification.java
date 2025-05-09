@@ -1,8 +1,7 @@
-package cardvault.CardVault.card;
+package cardvault.CardVault.core.cards;
 
-import cardvault.CardVault.card.dto.CardFilterDTO;
-import cardvault.CardVault.card.entity.CardEntity;
-import cardvault.CardVault.security.encryption.EncryptionService;
+import cardvault.CardVault.core.cards.dto.CardFilterDTO;
+import cardvault.CardVault.core.cards.entity.CardEntity;
 import cardvault.CardVault.security.hash.HashService;
 import jakarta.persistence.criteria.Predicate;
 import org.springframework.beans.factory.annotation.Autowired;

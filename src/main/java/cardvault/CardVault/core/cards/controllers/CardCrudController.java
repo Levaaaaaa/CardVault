@@ -1,10 +1,10 @@
-package cardvault.CardVault.card.controllers;
+package cardvault.CardVault.core.cards.controllers;
 
-import cardvault.CardVault.card.dto.CardFilterDTO;
-import cardvault.CardVault.card.dto.CreateCardRequest;
-import cardvault.CardVault.card.dto.CardResponse;
-import cardvault.CardVault.card.services.CardCrudService;
-import cardvault.CardVault.card.services.CardFindService;
+import cardvault.CardVault.core.cards.dto.CardFilterDTO;
+import cardvault.CardVault.core.cards.dto.CreateCardRequest;
+import cardvault.CardVault.core.cards.dto.CardResponse;
+import cardvault.CardVault.core.cards.services.CardCrudService;
+import cardvault.CardVault.core.cards.services.CardFindService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;

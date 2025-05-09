@@ -1,6 +1,6 @@
-package cardvault.CardVault.persistence.repositories;
+package cardvault.CardVault.core.users.repositories;
 
-import cardvault.CardVault.persistence.entities.UserEntity;
+import cardvault.CardVault.core.users.entities.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

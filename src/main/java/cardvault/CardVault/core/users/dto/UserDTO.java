@@ -1,7 +1,5 @@
-package cardvault.CardVault.dto.crud;
+package cardvault.CardVault.core.users.dto;
 
-import cardvault.CardVault.enums.UserRole;
-import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 

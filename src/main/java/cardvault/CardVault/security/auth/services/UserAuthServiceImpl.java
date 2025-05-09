@@ -1,11 +1,11 @@
-package cardvault.CardVault.auth.services;
+package cardvault.CardVault.security.auth.services;
 
-import cardvault.CardVault.auth.dto.login.LoginRequestDTO;
-import cardvault.CardVault.auth.dto.register.RegisterRequestDTO;
+import cardvault.CardVault.security.auth.dto.login.LoginRequestDTO;
+import cardvault.CardVault.security.auth.dto.register.RegisterRequestDTO;
 import cardvault.CardVault.core.users.UserRole;
 import cardvault.CardVault.core.users.entities.UserEntity;
 import cardvault.CardVault.core.users.repositories.UserRepository;
-import cardvault.CardVault.security.JwtService;
+import cardvault.CardVault.security.jwt.JwtService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
